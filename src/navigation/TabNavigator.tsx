@@ -39,7 +39,7 @@ const TabNavigator: React.FC = () => {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#4CAF50',
+        tabBarActiveTintColor: '#1E88E5',
         tabBarInactiveTintColor: 'gray',
       })}
     >
