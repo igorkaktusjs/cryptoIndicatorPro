@@ -4,7 +4,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const TopIndicatarsWidget = () => {
   return (
-    <View className='flex-row justify-between m-20 px-10 py-20 rounded-16 shadow-sm bg-background items-center'>
+    <View className='flex-row justify-between mx-20 my-2 px-10 py-1 rounded-16 shadow-sm bg-white items-center'>
         <View className='gap-1 justify-center items-center'>
             <Text className='color-primary font-semibold text-lg'>Market Cap</Text>
             <Text className='color-textPrimary font-bold'>3.33$</Text>

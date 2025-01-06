@@ -5,6 +5,7 @@ import WelcomeFirstScreen from '../components/welcomeComponents/WelcomeFirstScre
 import MainHeader from '../components/MainHeader';
 import TopIndicatarsWidget from '../components/HomeComponents/TopIndicatarsWidget';
 import FeaturedTokens from '../components/HomeComponents/FeaturedTokens';
+import WidgetList from '../components/HomeComponents/SortablList/WidgetList';
 
 
 
@@ -15,7 +16,7 @@ const HomeScreen: React.FC = () => {
           <MainHeader/>
           <TopIndicatarsWidget/>
           <FeaturedTokens/>
-          <TopIndicatarsWidget/>
+          <WidgetList/>
         </View>
   );
 };

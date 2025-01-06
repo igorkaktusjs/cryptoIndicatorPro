@@ -38,7 +38,7 @@ const TokenList = () => {
       keyExtractor={(item) => item.id}
     />
     <TouchableOpacity 
-        className=" mt-4 mx-auto px-6 py-1 rounded-16 opacity-85 shadow-sm"
+        className=" mt-4 mx-auto px-6 py-1 rounded-16 opacity-85"
         onPress={() => {}}>
             <Text className="text-primary text-lg font-bold">View More</Text>
     </TouchableOpacity>
