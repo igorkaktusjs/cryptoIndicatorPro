@@ -12,13 +12,13 @@ const MainHeader = () => {
 
   return (
     <View className='flex-row items-center px-20 justify-between' style={{marginTop: insets.top}}>
-        <TouchableOpacity onPress={() => navigation.navigate('NotificationsScreen')}>
+        <TouchableOpacity onPress={() => {}}>
             <MaterialIcons name="language" size={32} color="gray" />
         </TouchableOpacity>
       <Image 
             source={require('../assets/image/CIP-logo.jpg')} 
             className='h-9 w-9' />
-        <TouchableOpacity onPress={() => navigation.navigate('NotificationsScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
             <MaterialIcons name="notifications-none" size={32} color="gray" />
         </TouchableOpacity>
     </View>

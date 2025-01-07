@@ -1,5 +1,3 @@
-// AppNavigator.tsx
-
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,17 +17,47 @@ import WelcomeSecondScreen from '../components/welcomeComponents/WelcomeSecondSc
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// Стек для HomeTab
 const HomeStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} options={{ headerShown: true, title: 'Notifications' }} />
-    <Stack.Screen name="DetailsScreen" component={DetailsScreen} options={{ headerShown: true, title: 'Details' }} />
-    <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} options={{ headerShown: true, title: 'About Us' }} />
-    <Stack.Screen name="ProVersionScreen" component={ProVersionScreen} options={{ headerShown: true, title: 'Pro Version' }} />
-    <Stack.Screen name="WelcomeSecondScreen" component={WelcomeSecondScreen} options={{ headerShown: true, title: 'Welcome' }} />
+    <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ title: 'Notifications' }} />
+    <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Details' }} />
+    <Stack.Screen name="AboutUs" component={AboutUsScreen} options={{ title: 'About Us' }} />
+    <Stack.Screen name="ProVersion" component={ProVersionScreen} options={{ title: 'Pro Version' }} />
+    <Stack.Screen name="Welcome" component={WelcomeSecondScreen} options={{ title: 'Welcome' }} />
   </Stack.Navigator>
 );
 
+// Стек для MarketTab
+const MarketStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Market" component={MarketScreen} options={{ headerShown: false }} />
+  </Stack.Navigator>
+);
+
+// Стек для NewsTab
+const NewsStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
+  </Stack.Navigator>
+);
+
+// Стек для IndicatorsTab
+const IndicatorsStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Indicators" component={IndicatorsScreen} options={{ headerShown: false }} />
+  </Stack.Navigator>
+);
+
+// Стек для ProfileTab
+const ProfileStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+  </Stack.Navigator>
+);
+
+// Основной Tab Navigator
 const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
@@ -39,19 +67,19 @@ const AppNavigator: React.FC = () => {
             let iconName;
 
             switch (route.name) {
-              case 'Home':
+              case 'HomeTab':
                 iconName = focused ? 'home' : 'home-outline';
                 break;
-              case 'Market':
+              case 'MarketTab':
                 iconName = focused ? 'stats-chart' : 'stats-chart-outline';
                 break;
-              case 'News':
+              case 'NewsTab':
                 iconName = focused ? 'newspaper' : 'newspaper-outline';
                 break;
-              case 'Indicators':
+              case 'IndicatorsTab':
                 iconName = focused ? 'analytics' : 'analytics-outline';
                 break;
-              case 'Profile':
+              case 'ProfileTab':
                 iconName = focused ? 'person' : 'person-outline';
                 break;
               default:
@@ -64,11 +92,11 @@ const AppNavigator: React.FC = () => {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
-        <Tab.Screen name="Market" component={MarketScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Indicators" component={IndicatorsScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="HomeTab" component={HomeStack} options={{ title: 'Home', headerShown: false }} />
+        <Tab.Screen name="MarketTab" component={MarketStack} options={{ title: 'Market', headerShown: false }} />
+        <Tab.Screen name="NewsTab" component={NewsStack} options={{ title: 'News', headerShown: false }} />
+        <Tab.Screen name="IndicatorsTab" component={IndicatorsStack} options={{ title: 'Indicators', headerShown: false }} />
+        <Tab.Screen name="ProfileTab" component={ProfileStack} options={{ title: 'Profile', headerShown: false }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
