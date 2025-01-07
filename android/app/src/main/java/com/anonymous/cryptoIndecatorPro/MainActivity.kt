@@ -1,4 +1,4 @@
-package com.mynewproject
+package com.anonymous.cryptoIndecatorPro
 
 import android.os.Build
 import android.os.Bundle
