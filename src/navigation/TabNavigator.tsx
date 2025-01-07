@@ -1,12 +1,13 @@
+// TabNavigator.tsx
+
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
 import MarketScreen from '../screens/MarketScreen';
 import NewsScreen from '../screens/NewsScreen';
 import IndicatorsScreen from '../screens/IndicatorsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 const Tab = createBottomTabNavigator();
 
@@ -18,19 +19,19 @@ const TabNavigator: React.FC = () => {
           let iconName;
 
           switch (route.name) {
-            case 'Home':
+            case 'HomeTab':
               iconName = focused ? 'home' : 'home-outline';
               break;
-            case 'Market':
+            case 'MarketTab':
               iconName = focused ? 'stats-chart' : 'stats-chart-outline';
               break;
-            case 'News':
+            case 'NewsTab':
               iconName = focused ? 'newspaper' : 'newspaper-outline';
               break;
-            case 'Indicators':
+            case 'IndicatorsTab':
               iconName = focused ? 'analytics' : 'analytics-outline';
               break;
-            case 'Profile':
+            case 'ProfileTab':
               iconName = focused ? 'person' : 'person-outline';
               break;
             default:
@@ -43,11 +44,11 @@ const TabNavigator: React.FC = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Market" component={MarketScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Indicators" component={IndicatorsScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="HomeTab" component={HomeScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="MarketTab" component={MarketScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="NewsTab" component={NewsScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="IndicatorsTab" component={IndicatorsScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="ProfileTab" component={ProfileScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 };

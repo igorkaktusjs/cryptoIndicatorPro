@@ -96,7 +96,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ item, handleDelete 
   );
 };
 
-const Notifications: React.FC = () => {
+const NotificationsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<string>('marketAlerts');
   const [notifications, setNotifications] = useState(notificationsData);
@@ -145,4 +145,4 @@ const Notifications: React.FC = () => {
   );
 };
 
-export default Notifications;
+export default NotificationsScreen;
