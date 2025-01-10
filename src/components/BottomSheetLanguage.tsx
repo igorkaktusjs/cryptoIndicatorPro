@@ -1,58 +1,66 @@
-// BottomSheetLanguage.tsx
-
-import React, { useRef, useMemo } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'uk', name: 'Українська', flag: '🇺🇦' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'ja', name: '日本語', flag: '🇯🇵' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' }
 ];
 
-const BottomSheetLanguage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const sheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['80%'], []);
+const BottomSheetLanguage: React.FC<{
+  onClose: () => void;
+  onSelectLanguage: (code: string) => void;
+}> = ({ onClose, onSelectLanguage }) => {
 
   const handleSelectLanguage = (code: string) => {
-    console.log(`Selected language: ${code}`);
-    onClose();
+    onSelectLanguage(code);
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: { item: typeof languages[0] }) => (
     <TouchableOpacity
-      style={{ paddingVertical: 15, paddingHorizontal: 20 }}
+      className="py-4 px-5"
       onPress={() => handleSelectLanguage(item.code)}
     >
-      <Text style={{ fontSize: 18 }}>{item.flag} {item.name}</Text>
+      <Text className="text-lg text-center font-bold">{item.flag} {item.name}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <BottomSheet
-      ref={sheetRef}
-      index={0}
-      snapPoints={snapPoints}
-      onChange={(index) => index === -1 && onClose()}
-    >
-      <View style={{ padding: 20 }}>
-        <FlatList
-          data={languages}
-          keyExtractor={(item) => item.code}
-          renderItem={renderItem}
-        />
+    <View className="p-5">
+      <View className='flex-row items-center justify-center'>
         <TouchableOpacity
-          style={{ marginTop: 20, backgroundColor: '#1E88E5', padding: 15, borderRadius: 10 }}
+          className="mt-1 bg-blue-600 py-1 rounded absolute left-3"
           onPress={onClose}
         >
-          <Text style={{ color: 'white', textAlign: 'center', fontSize: 18 }}>Применить</Text>
+          <MaterialIcons name='close' size={32} color='gray'/>
         </TouchableOpacity>
+        <View>
+          <Text className="text-black text-center text-lg font-semibold">Select language</Text>
+        </View>
       </View>
-    </BottomSheet>
+
+      <BottomSheetFlatList
+        data={languages}
+        keyExtractor={(item) => item.code}
+        renderItem={renderItem}
+        contentContainerStyle={{ flexGrow: 1 }}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#E0E0E0',
+    marginHorizontal: 20,
+  },
+});
 
 export default BottomSheetLanguage;

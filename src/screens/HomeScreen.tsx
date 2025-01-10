@@ -1,23 +1,50 @@
-import React from 'react';
-import { View, ScrollView, Text } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import WelcomeFirstScreen from '../components/welcomeComponents/WelcomeFirstScreen';
+import React, { useRef, useCallback, useMemo } from 'react';
+import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import MainHeader from '../components/MainHeader';
 import TopIndicatarsWidget from '../components/HomeComponents/TopIndicatarsWidget';
 import FeaturedTokens from '../components/HomeComponents/FeaturedTokens';
 import WidgetList from '../components/HomeComponents/SortablList/WidgetList';
-
-
+import BottomSheetLanguage from '../components/BottomSheetLanguage';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 const HomeScreen: React.FC = () => {
-  const insets =  useSafeAreaInsets();
+  const sheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
+
+  const handleSheetChange = useCallback((index) => {
+    console.log('handleSheetChange', index);
+  }, []);
+
+  const handleSnapPress = useCallback(() => {
+    sheetRef.current?.snapToIndex(1);  // Открыть на 50%
+  }, []);
+
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close();
+  }, []);
+
+  const handleSelectLanguage = useCallback((code: string) => {
+    console.log(`Selected language: ${code}`);
+    handleClosePress();
+  }, [handleClosePress]);
+
   return (
-        <View className='flex-1 color-background '>
-          <MainHeader/>
-          <TopIndicatarsWidget/>
-          <FeaturedTokens/>
-          <WidgetList/>
-        </View>
+    <GestureHandlerRootView className="flex-1">
+      <MainHeader onLanguagePress={handleSnapPress} />
+      <TopIndicatarsWidget />
+      <FeaturedTokens />
+      <WidgetList />
+      <BottomSheet
+        ref={sheetRef}
+        index={-1}  // Начальное состояние - скрыт
+        snapPoints={snapPoints}
+        enableDynamicSizing={false}
+        onChange={handleSheetChange}
+      >
+        <BottomSheetLanguage onClose={handleClosePress} onSelectLanguage={handleSelectLanguage} />
+      </BottomSheet>
+    </GestureHandlerRootView>
   );
 };
 
