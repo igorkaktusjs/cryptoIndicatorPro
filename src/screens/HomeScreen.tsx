@@ -17,7 +17,7 @@ const HomeScreen: React.FC = () => {
   }, []);
 
   const handleSnapPress = useCallback(() => {
-    sheetRef.current?.snapToIndex(1);  // Открыть на 50%
+    sheetRef.current?.snapToIndex(1);  
   }, []);
 
   const handleClosePress = useCallback(() => {
@@ -37,7 +37,7 @@ const HomeScreen: React.FC = () => {
       <WidgetList />
       <BottomSheet
         ref={sheetRef}
-        index={-1}  // Начальное состояние - скрыт
+        index={-1}  
         snapPoints={snapPoints}
         enableDynamicSizing={false}
         onChange={handleSheetChange}

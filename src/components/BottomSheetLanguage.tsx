@@ -43,7 +43,6 @@ const BottomSheetLanguage: React.FC<{
           <Text className="text-black text-center text-lg font-semibold">Select language</Text>
         </View>
       </View>
-
       <BottomSheetFlatList
         data={languages}
         keyExtractor={(item) => item.code}

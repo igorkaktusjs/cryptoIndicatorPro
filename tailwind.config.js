@@ -1,6 +1,4 @@
-// tailwind.config.js
 
-const customUtilities = require('./utilities');
 
 module.exports = {
   content: [

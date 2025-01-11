@@ -17,7 +17,7 @@ import WelcomeSecondScreen from '../components/welcomeComponents/WelcomeSecondSc
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// Стек для HomeTab
+
 const HomeStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
@@ -29,35 +29,35 @@ const HomeStack = () => (
   </Stack.Navigator>
 );
 
-// Стек для MarketTab
+
 const MarketStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Market" component={MarketScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
-// Стек для NewsTab
+
 const NewsStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
-// Стек для IndicatorsTab
+
 const IndicatorsStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Indicators" component={IndicatorsScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
-// Стек для ProfileTab
+
 const ProfileStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
-// Основной Tab Navigator
+
 const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
