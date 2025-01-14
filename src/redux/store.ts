@@ -1,11 +1,12 @@
-
 import { configureStore } from '@reduxjs/toolkit';
-import cryptoReducer from './cryptoSlice';
+import { binanceApiSlice } from './slices/binanceApiSlice';
 
 const store = configureStore({
   reducer: {
-    crypto: cryptoReducer,
+    [binanceApiSlice.reducerPath]: binanceApiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(binanceApiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

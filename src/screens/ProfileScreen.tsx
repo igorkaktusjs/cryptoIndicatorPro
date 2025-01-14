@@ -22,28 +22,27 @@ const ProfileScreen: React.FC = () => {
               <Text className="mt-2 text-gray-600">+ 0.5 BTC from 1EzwoHtiXB4iFwedPr49iywjZn2nnekhoj</Text>
             </View>
           </Section>
-          <View style={styles.separator} />
 
           {/* Profile Settings */}
           <Section title="Profile Settings">
             <ProfileButton text="Change Name" iconName="edit" iconColor="green" onPress={() => {}} />
             <ProfileButton text="Change Avatar" iconName="edit" iconColor="green" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+      
 
           {/* Security Settings */}
           <Section title="Security Settings">
             <ProfileButton text="Change Password" iconName="lock" iconColor="red" onPress={() => {}} />
             <ProfileButton text="Two-Factor Authentication" iconName="security" iconColor="red" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+        
 
           {/* Preferences */}
           <Section title="Preferences">
             <ProfileButton text="Language Settings" iconName="language" iconColor="purple" onPress={() => {}} />
             <ProfileButton text="Currency Settings" iconName="attach-money" iconColor="purple" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+        
 
           {/* Subscription Plan */}
           <Section title="Subscription Plan">
@@ -51,27 +50,27 @@ const ProfileScreen: React.FC = () => {
             <ProfileButton text="Upgrade to Pro" iconName="upgrade" iconColor="blue" onPress={() => {}} />
             <ProfileButton text="Cancel Subscription" iconName="cancel" iconColor="blue" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+      
 
           {/* App Feedback */}
           <Section title="App Feedback">
             <ProfileButton text="Leave a Review" iconName="feedback" iconColor="orange" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+        
 
           {/* Terms and Policies */}
           <Section title="Terms and Policies">
             <ProfileButton text="Terms of Use" iconName="policy" iconColor="darkgray" onPress={() => {}} />
             <ProfileButton text="Privacy Policy" iconName="privacy-tip" iconColor="darkgray" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+        
 
           {/* Support */}
           <Section title="Support">
             <ProfileButton text="FAQ" iconName="help" iconColor="skyblue" onPress={() => {}} />
             <ProfileButton text="Contact Support" iconName="support-agent" iconColor="skyblue" onPress={() => {}} />
           </Section>
-          <View style={styles.separator} />
+          
 
           {/* Account Actions */}
           <Section title="Account Actions">

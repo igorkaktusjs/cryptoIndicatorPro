@@ -9,7 +9,7 @@ import './global.css';
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-          <Provider store={store}>
+      <Provider store={store}>
             <AppNavigator />
           </Provider>
     </GestureHandlerRootView>
