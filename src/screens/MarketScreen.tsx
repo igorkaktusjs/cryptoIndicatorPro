@@ -4,6 +4,7 @@ import { useGetTop100ByMarketCapQuery } from '../redux/slices/binanceApiSlice';
 import HorizontalMenu from '../components/MarketComponentsScreen/HorizontalMenu';
 import MarketListItem from '../components/MarketComponentsScreen/MarketListItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import MainHeaderWithLogoAndIcons from '../components/CustomHeaderComponents/MainHeaderWithLogoAndIcons';
 
 const MarketScreen: React.FC = () => {
   const { data, error, isLoading } = useGetTop100ByMarketCapQuery();
@@ -56,7 +57,8 @@ const MarketScreen: React.FC = () => {
   const items = ['Market Cap', 'Price', '24H'];
 
   return (
-    <SafeAreaView  edges={['top']} className="flex-1 px-5">
+    <SafeAreaView  edges={['top']} className="flex-1 px-4">
+      <MainHeaderWithLogoAndIcons/>
       <HorizontalMenu
         items={items}
         selectedItem={selectedItem}

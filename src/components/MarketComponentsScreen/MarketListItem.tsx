@@ -11,7 +11,7 @@ interface MarketListItemProps {
 }
 
 const formatRank = (rank: number): string => {
-  return rank < 10 ? ` ${rank}` : `${rank}`;
+  return rank < 10 ? `${rank}   ` : `${rank}`;
 };
 
 const MarketListItem: React.FC<MarketListItemProps> = ({
