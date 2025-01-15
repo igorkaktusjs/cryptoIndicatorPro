@@ -5,6 +5,7 @@ import HorizontalMenu from '../components/MarketComponentsScreen/HorizontalMenu'
 import MarketListItem from '../components/MarketComponentsScreen/MarketListItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MainHeaderWithLogoAndIcons from '../components/CustomHeaderComponents/MainHeaderWithLogoAndIcons';
+import MarketTicker from '../components/MarketComponentsScreen/MarketTicker';
 
 const MarketScreen: React.FC = () => {
   const { data, error, isLoading } = useGetTop100ByMarketCapQuery();
@@ -59,6 +60,7 @@ const MarketScreen: React.FC = () => {
   return (
     <SafeAreaView  edges={['top']} className="flex-1 px-4">
       <MainHeaderWithLogoAndIcons/>
+      <MarketTicker/>
       <HorizontalMenu
         items={items}
         selectedItem={selectedItem}
