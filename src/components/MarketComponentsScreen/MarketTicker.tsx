@@ -107,7 +107,7 @@ const MarketTicker: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 30,
     overflow: 'hidden',
     justifyContent: 'center',
   },
