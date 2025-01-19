@@ -12,9 +12,9 @@ const IndicatorsScreen = () => {
       <MainHeaderWithLogoAndIcons />
       <DescriptionOfTheIndicatorsScreen />
       <ScrollView contentContainerStyle={styles.container}>
-        <RSIIndicator id="bitcoin" days="14" />
-        <MACDIndicator id="bitcoin" days={50} interval="daily" />
-        <DivergenceIndicator id="bitcoin" days="1" />
+        <RSIIndicator id="bitcoin" days="14"  />
+        <MACDIndicator id="bitcoin" days={50}  />
+        <DivergenceIndicator id="bitcoin"  />
       </ScrollView>
     </SafeAreaView>
   );

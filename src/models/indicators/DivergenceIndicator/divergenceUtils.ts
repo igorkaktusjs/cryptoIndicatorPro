@@ -1,3 +1,4 @@
+
 export const calculateEMA = (prices: number[], period: number) => {
   const k = 2 / (period + 1);
   const emaArray = [prices[0]];

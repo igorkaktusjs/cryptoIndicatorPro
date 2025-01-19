@@ -14,7 +14,9 @@ export const marketDataApi = createApi({
   }),
   endpoints: (builder) => ({
     getMarketChart: builder.query({
-      query: ({ id, vs_currency = 'usd', days, interval = '', precision = '' }) => `coins/${id}/market_chart?vs_currency=${vs_currency}&days=${days}&interval=${interval}&precision=${precision}`,
+        query: ({ id, vs_currency = 'usd', days }) => {
+             return `coins/${id}/market_chart?vs_currency=${vs_currency}&days=${days}`
+        } 
     }),
   }),
 });

@@ -19,15 +19,15 @@ const MACDIndicator = ({ id, days }) => {
   }
 
   if (!data || !data.prices || !Array.isArray(data.prices)) {
-    console.warn('Invalid data structure:', data);
+    //console.warn('Invalid data structure:', data);
     return <Text>No data available</Text>;
   }
 
   const prices = data.prices.map((price) => price[1]);
-  console.log('Prices:', prices);
+  //console.log('Prices:', prices);
 
-  const { macd, signal, histogram } = calculateMACD(prices);
-  console.log('MACD Data:', { macd, signal, histogram });
+  const { macd, signal, histogram, } = calculateMACD(prices);
+  //console.log('MACD Data:', { macd, signal, histogram });
 
   return (
     <View style={styles.container}>
