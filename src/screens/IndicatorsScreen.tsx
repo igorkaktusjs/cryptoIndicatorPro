@@ -13,7 +13,7 @@ const IndicatorsScreen = () => {
       <DescriptionOfTheIndicatorsScreen />
       <ScrollView contentContainerStyle={styles.container}>
         <RSIIndicator id="bitcoin" days="14"  />
-        <MACDIndicator id="bitcoin" days={50}  />
+        {/* <MACDIndicator id="bitcoin" days={50}  /> */}
         <DivergenceIndicator id="bitcoin"  />
       </ScrollView>
     </SafeAreaView>

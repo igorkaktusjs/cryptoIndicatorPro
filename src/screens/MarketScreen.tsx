@@ -6,6 +6,8 @@ import MarketListItem from '../components/MarketComponentsScreen/MarketListItem'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MainHeaderWithLogoAndIcons from '../components/CustomHeaderComponents/MainHeaderWithLogoAndIcons';
 import MarketTicker from '../components/MarketComponentsScreen/MarketTicker';
+import Loader from '../components/UI/Loader';
+
 
 const MarketScreen: React.FC = () => {
   const { data, error, isLoading } = useGetTop100ByMarketCapQuery();
@@ -47,7 +49,7 @@ const MarketScreen: React.FC = () => {
   );
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return <Loader height={300}/>
   }
 
   if (error) {

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming, withSequence, withRepeat } from 'react-native-reanimated';
 import { useGetGlobalDataQuery } from '../../redux/slices/cryptoApiSlice';
-import { FontAwesome } from '@expo/vector-icons'; // Импорт иконок
+import { FontAwesome } from '@expo/vector-icons';
+import Loader from '../UI/Loader';
 
 const { width } = Dimensions.get('window');
 
@@ -36,7 +37,7 @@ const MarketTicker: React.FC = () => {
   });
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <Loader/>;
   }
 
   if (error) {
@@ -44,7 +45,6 @@ const MarketTicker: React.FC = () => {
     return <Text>Error loading global data.</Text>;
   }
 
-  // Получение текущих значений
   const marketCap = data.data.total_market_cap.usd;
   const marketCapChangePercentage = data.data.market_cap_change_percentage_24h_usd.toFixed(2);
   const volume24h = data.data.total_volume.usd;
@@ -52,7 +52,6 @@ const MarketTicker: React.FC = () => {
   const dominanceBTCValue = data.data.market_cap_percentage.btc;
   const dominanceETHValue = data.data.market_cap_percentage.eth;
 
-  // Определение цвета и иконки для изменения рыночной капитализации
   const getColor = (change: number) => (change > 0 ? 'green' : 'red');
   const getArrowIcon = (change: number) => (change > 0 ? 'arrow-up' : 'arrow-down');
 
@@ -62,7 +61,6 @@ const MarketTicker: React.FC = () => {
   const marketCapText = `Market Cap: $${(marketCap / 1e12).toFixed(2)} T (${marketCapChangePercentage}%)`;
   const volume24hText = `24h Vol: $${(volume24h / 1e9).toFixed(2)} B`;
 
-  // Определение цвета для доминации BTC и ETH
   const dominanceBTCColor = dominanceBTCValue > dominanceETHValue ? 'green' : 'red';
   const dominanceETHColor = dominanceETHValue > dominanceBTCValue ? 'green' : 'red';
 

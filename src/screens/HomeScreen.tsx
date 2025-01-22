@@ -7,6 +7,7 @@ import FeaturedTokens from '../components/HomeComponents/FeaturedTokens';
 import WidgetList from '../components/HomeComponents/SortablList/WidgetList';
 import BottomSheetLanguage from '../components/BottomSheetLanguage';
 import BottomSheet from '@gorhom/bottom-sheet';
+import MarketTicker from '../components/MarketComponentsScreen/MarketTicker';
 
 const HomeScreen: React.FC = () => {
   const sheetRef = useRef<BottomSheet>(null);
@@ -32,8 +33,9 @@ const HomeScreen: React.FC = () => {
   return (
     <GestureHandlerRootView className="flex-1">
       <MainHeader onLanguagePress={handleSnapPress} />
+      <MarketTicker/>
       <TopIndicatarsWidget />
-      <FeaturedTokens />
+      <FeaturedTokens />          
       <WidgetList />
       <BottomSheet
         ref={sheetRef}

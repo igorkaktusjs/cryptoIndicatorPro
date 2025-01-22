@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useGetMarketChartQuery } from '../../../redux/slices/marketDataSlice';
 import { calculateMACD } from './divergenceUtils';
 
-// Ваша логика для расчета RSI
+// Оптимизированный расчет RSI
 const calculateRSI = (prices: number[], period = 14): number | null => {
   if (prices.length < period + 1) return null;
 
@@ -24,7 +24,6 @@ const calculateRSI = (prices: number[], period = 14): number | null => {
   let averageGain = gains.slice(0, period).reduce((acc, val) => acc + val, 0) / period;
   let averageLoss = losses.slice(0, period).reduce((acc, val) => acc + val, 0) / period;
 
-  // Расчет скользящих средних и RSI
   const rsiValues: number[] = [];
   for (let i = period; i < gains.length; i++) {
     averageGain = (averageGain * (period - 1) + gains[i]) / period;
@@ -47,26 +46,17 @@ const DivergenceIndicator = ({
   riskPercentage = 2,
 }) => {
   // Запрос для RSI
-  const {
-    data: rsiData,
-    error: rsiError,
-    isLoading: isRSILoading,
-  } = useGetMarketChartQuery({ id, days: rsiDays });
-
+  const { data: rsiData, error: rsiError, isLoading: isRSILoading } = useGetMarketChartQuery({ id, days: rsiDays });
   // Запрос для MACD
-  const {
-    data: macdData,
-    error: macdError,
-    isLoading: isMACDLoading,
-  } = useGetMarketChartQuery({ id, days: macdDays });
+  const { data: macdData, error: macdError, isLoading: isMACDLoading } = useGetMarketChartQuery({ id, days: macdDays });
 
-  // Обработка данных для RSI (гарантируем вызов хука)
+  // Обработка данных для RSI
   const rsiPrices = useMemo(() => {
     if (!rsiData || !Array.isArray(rsiData.prices)) return [];
     return rsiData.prices.map((price) => price[1]);
   }, [rsiData]);
 
-  // Обработка данных для MACD (гарантируем вызов хука)
+  // Обработка данных для MACD
   const macdPrices = useMemo(() => {
     if (!macdData || !Array.isArray(macdData.prices)) return [];
     return macdData.prices.map((price) => price[1]);
@@ -78,20 +68,13 @@ const DivergenceIndicator = ({
     return calculateRSI(rsiPrices, rsiPeriod);
   }, [rsiPrices, rsiPeriod]);
 
-  // Расчет MACD (всегда вызов хука)
+  // Расчет MACD
   const { macd, signal, histogram } = useMemo(() => {
-    if (macdPrices.length === 0) {
-      return { macd: [], signal: [], histogram: [] };
-    }
-    return calculateMACD(
-      macdPrices,
-      macdPeriods.short,
-      macdPeriods.long,
-      macdPeriods.signal
-    );
+    if (macdPrices.length === 0) return { macd: [], signal: [], histogram: [] };
+    return calculateMACD(macdPrices, macdPeriods.short, macdPeriods.long, macdPeriods.signal);
   }, [macdPrices, macdPeriods]);
 
-  // Анализ дивергенции (гарантируем вызов useEffect)
+  // Анализ дивергенции
   useEffect(() => {
     if (macd.length < 2 || !rsi) return;
 
@@ -100,15 +83,13 @@ const DivergenceIndicator = ({
     const lastSignal = signal[signal.length - 1];
     const lastRSI = rsi;
 
-    const divergenceDetected =
-      (lastMACD > lastSignal && lastRSI < 30) || (lastMACD < lastSignal && lastRSI > 70);
+    const divergenceDetected = (lastMACD > lastSignal && lastRSI < 30) || (lastMACD < lastSignal && lastRSI > 70);
 
     if (divergenceDetected) {
       const signalType = lastMACD > lastSignal ? 'BUY' : 'SELL';
-      const stopLoss =
-        signalType === 'BUY'
-          ? lastPrice * (1 - riskPercentage / 100)
-          : lastPrice * (1 + riskPercentage / 100);
+      const stopLoss = signalType === 'BUY'
+        ? lastPrice * (1 - riskPercentage / 100)
+        : lastPrice * (1 + riskPercentage / 100);
 
       console.log('--- Divergence Detected ---');
       console.log(`Pair: ${id}/USD`);
@@ -117,22 +98,14 @@ const DivergenceIndicator = ({
     }
   }, [signal, rsi, macd, macdPrices, riskPercentage]);
 
-  // Проверка загрузки и ошибок
   if (isRSILoading || isMACDLoading) {
     return <Text>Loading...</Text>;
   }
 
   if (rsiError || macdError) {
-    return (
-      <Text>
-        {`Error: ${
-          rsiError?.status || macdError?.status || 'Unknown error'
-        }`}
-      </Text>
-    );
+    return <Text>{`Error: ${rsiError?.status || macdError?.status || 'Unknown error'}`}</Text>;
   }
 
-  // Если нет данных
   if (!rsi || !macd.length) {
     return <Text>No valid data available</Text>;
   }

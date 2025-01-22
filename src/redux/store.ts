@@ -2,9 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { binanceApiSlice } from './slices/binanceApiSlice';
 import { cryptoApiSlice } from './slices/cryptoApiSlice';
 import { marketDataApi } from './slices/marketDataSlice';
+import userReducer from './slices/usersSlice';
+
+
 
 const store = configureStore({
   reducer: {
+    user: userReducer,
     [cryptoApiSlice.reducerPath]: cryptoApiSlice.reducer,
     [binanceApiSlice.reducerPath]: binanceApiSlice.reducer,
     [marketDataApi.reducerPath]: marketDataApi.reducer,
