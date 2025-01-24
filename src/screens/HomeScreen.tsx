@@ -33,7 +33,7 @@ const HomeScreen: React.FC = () => {
   return (
     <GestureHandlerRootView className="flex-1">
       <MainHeader onLanguagePress={handleSnapPress} />
-      <MarketTicker/>
+      <MarketTicker/>   
       <TopIndicatarsWidget />
       <FeaturedTokens />          
       <WidgetList />

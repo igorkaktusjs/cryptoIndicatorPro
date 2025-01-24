@@ -22,12 +22,31 @@ export const binanceApiSlice = createApi({
       query: () => '/coins/markets?vs_currency=usd',
       transformResponse: (response: any[]) => {
         return response.map((item: any, index: number) => ({
+          name: item.name,
           rank: index + 1,
           symbol: item.symbol.toUpperCase(),
-          price: item.current_price, // Изменено
+          price: item.current_price, 
           change: item.price_change_percentage_24h,
           marketCap: formatMarketCap(item.market_cap),
+          market_cap_change_percentage_24h: formatMarketCap(item.market_cap_change_percentage_24h),
+          market_cap_change_24h: formatMarketCap(item.market_cap_change_24h),
           imageUrl: item.image,
+          total_volume: item.total_volume,
+          high_24h: item.high_24h,
+          low_24h: item.low_24h,
+          price_change_24h: item.price_change_24h,
+          circulating_supply: item.circulating_supply,
+          total_supply: item.total_supply,
+          max_supply: item.max_supply,
+          ath: item.ath,
+          ath_change_percentage: item.ath_change_percentage,
+          ath_date: item.ath_date,
+          atl: item.atl,
+          atl_change_percentage: item.atl_change_percentage,
+          atl_date: item.atl_date,
+          roi: item.roi,
+          last_updated: item.last_updated
+
         }));
       },
     }),

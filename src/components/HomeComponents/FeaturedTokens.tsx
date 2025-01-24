@@ -1,60 +1,86 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useGetTop100ByMarketCapQuery } from '../../redux/slices/binanceApiSlice';
+import { useSelector } from 'react-redux';
 import Loader from '../UI/Loader';
-import { toggleFavorite } from '../../redux/slices/usersSlice';
+import { useNavigation } from '@react-navigation/native';
 
-const defaultTokens = [
-  { id: 'BTC', name: 'Bitcoin', lastPrice: '$50,000', dayChange: '+5%', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png' },
-  { id: 'ETH', name: 'Ethereum', lastPrice: '$4,000', dayChange: '+3%', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png' },
-  { id: 'SOL', name: 'Solana', lastPrice: '$20', dayChange: '-2%', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png' },
-  { id: 'XRP', name: 'Ripple', lastPrice: '$1', dayChange: '-1%', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png' },
-];
+const DEFAULT_TOKENS = ['btc', 'eth', 'sol', 'xrp']; 
 
 const TokenList = () => {
-  const { favorites } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+  const { data: marketData, isLoading, error } = useGetTop100ByMarketCapQuery();
+  const favorites = useSelector((state) => state.user.favorites); 
 
-  const combinedTokens = [
-    ...favorites.map((id) => defaultTokens.find((token) => token.id === id)!),
-    ...defaultTokens.filter((token) => !favorites.includes(token.id)).slice(0, 5 - favorites.length),
-  ];
+  const navigation = useNavigation();
+
+  const displayedTokens = useMemo(() => {
+    if (!marketData) return [];
+
+    const favoriteTokens = marketData.filter((token) =>
+      favorites.includes(token.symbol.toLowerCase())
+    );
+
+    const remainingTokens = DEFAULT_TOKENS.filter(
+      (symbol) => !favoriteTokens.some((token) => token.symbol.toLowerCase() === symbol)
+    )
+      .slice(0, 5 - favoriteTokens.length) 
+      .map((symbol) => marketData.find((token) => token.symbol.toLowerCase() === symbol))
+      .filter(Boolean); 
+
+    return [...favoriteTokens, ...remainingTokens].slice(0, 5); 
+  }, [marketData, favorites]);
+
+  if (isLoading) {
+    return <Loader height={300} />;
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>Sorry, we got some issues with our server</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex p-4">
       <FlatList
-        data={combinedTokens}
+        scrollEnabled={false}
+        data={displayedTokens}
         renderItem={({ item }) => (
-          <TouchableOpacity className="flex-row justify-between items-center p-2 ml-8">
+          <TouchableOpacity 
+            onPress={() => navigation.navigate('CoinDetails', { id: item.symbol })}
+            className="flex-row justify-between items-center p-2 ml-8">
             <View className="flex-row w-1/3 items-center gap-2">
-              <Image source={{ uri: item.image }} className="h-9 w-9 my-1" />
-              <Text className="text-lg uppercase font-semibold text-blue">{item.name}</Text>
+              <Image source={{ uri: item.imageUrl }} className="h-9 w-9 my-1" />
+              <Text className="text-lg uppercase font-semibold text-blue">
+                {item.symbol}
+              </Text>
             </View>
             <View className="w-1/3 items-center">
-              <Text className="text-base text-textPrimary font-bold">{item.lastPrice}</Text>
+              <Text className="text-base text-textPrimary font-bold">
+                ${item.price.toLocaleString()}
+              </Text>
             </View>
             <View className="w-1/3 items-center">
               <Text
                 className={`text-base font-bold ${
-                  item.dayChange.startsWith('-') ? 'text-red' : 'text-green'
+                  item.change < 0 ? 'text-red' : 'text-green'
                 }`}
               >
-                {item.dayChange}
+                {item.change.toFixed(2)}%
               </Text>
             </View>
-            <TouchableOpacity
-              className="p-2"
-              onPress={() => dispatch(toggleFavorite(item.id))}
-            >
-              <Text className={favorites.includes(item.id) ? 'text-yellow-500' : 'text-gray-500'}>
-                ★
-              </Text>
-            </TouchableOpacity>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.symbol}
       />
+      <TouchableOpacity
+        className="mt-4 mx-auto px-6 py-1 rounded-16 opacity-85"
+        onPress={() => {}}
+      >
+        <Text className="text-primary text-lg font-bold">View More</Text>
+      </TouchableOpacity>
     </View>
   );
 };

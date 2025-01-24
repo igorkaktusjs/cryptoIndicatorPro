@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -12,7 +13,7 @@ const MainHeaderWithLogoAndIcons: React.FC = () => {
   const navigation = useNavigation();
 
   return (
-    <View className="flex-row justify-between items-center px-5 my-2">
+    <SafeAreaView edges={['top']}  className="flex-row justify-between items-center px-5 my-2">
       <View className='flex-row justify-center items-center'>
       <Image
         source={require('../../assets/image/CIP-logo.jpg')}
@@ -31,7 +32,7 @@ const MainHeaderWithLogoAndIcons: React.FC = () => {
         <MaterialIcons name="search" size={32} color="gray" />
       </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

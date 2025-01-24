@@ -60,7 +60,7 @@ const MarketScreen: React.FC = () => {
   const items = ['Market Cap', 'Price', '24H'];
 
   return (
-    <SafeAreaView  edges={['top']} className="flex-1 px-4">
+    <View  className="flex-1 px-4">
       <MainHeaderWithLogoAndIcons/>
       <MarketTicker/>
       <HorizontalMenu
@@ -75,7 +75,7 @@ const MarketScreen: React.FC = () => {
         renderItem={renderItem}
         contentContainerStyle={{ paddingBottom: 20 }}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

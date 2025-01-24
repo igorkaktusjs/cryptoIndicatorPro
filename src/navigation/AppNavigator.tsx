@@ -13,6 +13,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import ProVersionScreen from '../screens/ProVersionScreen';
 import WelcomeSecondScreen from '../components/welcomeComponents/WelcomeSecondScreen';
+import CoinDetailsScreen from '../screens/CoinDetailsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,6 +27,7 @@ const HomeStack = () => (
     <Stack.Screen name="AboutUs" component={AboutUsScreen} options={{ title: 'About Us' }} />
     <Stack.Screen name="ProVersion" component={ProVersionScreen} options={{ title: 'Pro Version' }} />
     <Stack.Screen name="Welcome" component={WelcomeSecondScreen} options={{ title: 'Welcome' }} />
+    <Stack.Screen name="CoinDetails" component={CoinDetailsScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
