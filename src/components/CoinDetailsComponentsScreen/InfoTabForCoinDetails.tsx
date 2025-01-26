@@ -1,5 +1,6 @@
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, Dimensions } from 'react-native';
 import React, {useMemo} from 'react';
+import RenderHtml from 'react-native-render-html';
 import { useGetCoinDataByIdQuery} from '../../redux/slices/coinDataApi';
 import { useGetCoinsListWithMarketDataQuery } from '../../redux/slices/сoinsListWithMarketDataApiScile';
 import {useGetTop100ByMarketCapQuery} from '../../redux/slices/binanceApiSlice'
@@ -10,24 +11,23 @@ import Loader from '../UI/Loader';
 import HistoricalData from './HistoricalData';
 
 const InfoTabForCoinDetails = () => {
+  const contentWidth = Dimensions.get('window').width;
 
   const route = useRoute();
-  const { id, coinName, symbol } = route.params;
+  const { id, coinName, item } = route.params;
 
-  console.log(id.toLowerCase());
+  console.log(item.toLowerCase());
 
   const { data: coins, isLoading: isCoinsLoading, error: coinsError } =
     useGetCoinsListWithMarketDataQuery({ vs_currency: 'usd', order: 'market_cap_desc', per_page: 100, page: 1 });
     
-    const { data: coinData, isLoading: isCoinDataLoading, error: coinDataError } = useGetCoinDataByIdQuery(id.toUpperCase(id.toLowerCase()));
+    const { data: coinData, isLoading: isCoinDataLoading, error: coinDataError } = useGetCoinDataByIdQuery(item); //for desc data
     const { data: CoinById, isLoading: CoinByIdLoading } = useGetCoinByIdQuery(coinName.toLowerCase());
     const { data: globalData, isLoading: globalLoading } = useGetGlobalDataQuery();
     const { data: coinsData, isLoading: coinsLoading } = useGetCoinsMarketsQuery();
     const {data: marketData, isLoading: isMarketLoading, error: marketDataError} = useGetTop100ByMarketCapQuery();
 
-
-
-    if (globalLoading || coinsLoading ) return <Loader />;
+    if (globalLoading || coinsLoading ) return <Loader color='red' />;
     if (!globalData || !coinsData) return <Text>Error loading data</Text>;
     if (isCoinsLoading || isCoinDataLoading) return <Loader />;
 
@@ -38,8 +38,6 @@ const InfoTabForCoinDetails = () => {
     const CoinWithId = CoinById[0];
 
     const dominance = ((CoinWithId?.market_cap / totalMarketCap) * 100).toFixed(2);
-
-  console.log(coinData);
 
   return (
     <ScrollView className="p-4">
@@ -88,7 +86,11 @@ const InfoTabForCoinDetails = () => {
       </View>
       
       <View className="mb-4 border-hairline border-zinc-300 rounded-md p-2 bg-zinc-100">
-        <Text className="text-sm text-gray-500 font-normal">     {coinData?.description?.substring(0, 4000)}...</Text>
+        <Text className="text-sm text-gray-500 font-normal"><RenderHtml
+        contentWidth={contentWidth}
+        source={{ html: coinData?.description }}
+      /></Text>
+        
       </View>
     </ScrollView>
   );
