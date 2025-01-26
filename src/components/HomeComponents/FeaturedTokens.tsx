@@ -31,7 +31,7 @@ const TokenList = () => {
   }, [marketData, favorites]);
 
   if (isLoading) {
-    return <Loader height={300} />;
+    return <Loader height={100} />;
   }
 
   if (error) {
@@ -49,7 +49,7 @@ const TokenList = () => {
         data={displayedTokens}
         renderItem={({ item }) => (
           <TouchableOpacity 
-            onPress={() => navigation.navigate('CoinDetails', { id: item.symbol })}
+            onPress={() => navigation.navigate('CoinDetails', {id: item.symbol, coinName: item.name })}
             className="flex-row justify-between items-center p-2 ml-8">
             <View className="flex-row w-1/3 items-center gap-2">
               <Image source={{ uri: item.imageUrl }} className="h-9 w-9 my-1" />

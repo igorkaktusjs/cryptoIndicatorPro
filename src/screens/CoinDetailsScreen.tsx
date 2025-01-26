@@ -44,8 +44,7 @@ const CoinDetailsScreen = () => {
   return (
     <ScrollView className="flex p-4">
       <MainHeaderForSinglePage/>
-      <TabsForCoinDetalis tabs={tabs}/>
-      
+      <TabsForCoinDetalis tabs={tabs} coinId={id}/>
       <View className="m-2 bg-card p-4 rounded-md">
         <Text className="text-sm text-gray">
           Data provided by CoinGecko. Displayed as is without warranties or guarantees.

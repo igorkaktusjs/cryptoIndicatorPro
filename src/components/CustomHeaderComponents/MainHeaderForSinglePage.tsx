@@ -8,13 +8,11 @@ import {  useGetTop100ByMarketCapQuery } from '../../redux/slices/binanceApiSlic
 
 const MainHeaderWithLogoAndIcons: React.FC = () => {
     const route = useRoute();
-  const navigation = useNavigation();
-  const { id } = route.params;
+    const navigation = useNavigation();
+    const { id } = route.params;
 
-  
-
-  const { data: coinData } = useGetTop100ByMarketCapQuery();
-  const coin = useMemo(() => coinData?.find((c) => c.symbol.toLowerCase() === id.toLowerCase()), [coinData, id]);
+    const { data: coinData } = useGetTop100ByMarketCapQuery();
+    const coin = useMemo(() => coinData?.find((c) => c.symbol.toLowerCase() === id.toLowerCase()), [coinData, id]);
 
   return (
     <SafeAreaView edges={['top']}  className=" px-5 my-2">

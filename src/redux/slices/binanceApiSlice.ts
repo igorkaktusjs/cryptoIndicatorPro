@@ -22,6 +22,7 @@ export const binanceApiSlice = createApi({
       query: () => '/coins/markets?vs_currency=usd',
       transformResponse: (response: any[]) => {
         return response.map((item: any, index: number) => ({
+          id: item.id,
           name: item.name,
           rank: index + 1,
           symbol: item.symbol.toUpperCase(),
@@ -31,7 +32,7 @@ export const binanceApiSlice = createApi({
           market_cap_change_percentage_24h: formatMarketCap(item.market_cap_change_percentage_24h),
           market_cap_change_24h: formatMarketCap(item.market_cap_change_24h),
           imageUrl: item.image,
-          total_volume: item.total_volume,
+          total_volume: formatMarketCap(item.total_volume),
           high_24h: item.high_24h,
           low_24h: item.low_24h,
           price_change_24h: item.price_change_24h,

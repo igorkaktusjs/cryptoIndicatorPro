@@ -9,6 +9,7 @@ interface Tab {
 
 interface TabsProps {
   tabs: Tab[];
+  
 }
 
 const TabsForCoinDetalis: React.FC<TabsProps> = ({ tabs }) => {
@@ -16,7 +17,6 @@ const TabsForCoinDetalis: React.FC<TabsProps> = ({ tabs }) => {
 
   return (
     <View style={styles.container}>
-      {/* Горизонтальное меню вкладок */}
       <View style={styles.tabBar}>
         {tabs.map((tab) => (
           <TouchableOpacity
@@ -39,7 +39,6 @@ const TabsForCoinDetalis: React.FC<TabsProps> = ({ tabs }) => {
         ))}
       </View>
 
-      {/* Содержимое активной вкладки */}
       <View style={styles.content}>
         {tabs.find((tab) => tab.key === activeTab)?.component}
       </View>

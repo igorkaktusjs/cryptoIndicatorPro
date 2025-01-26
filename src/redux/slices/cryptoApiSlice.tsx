@@ -16,7 +16,14 @@ export const cryptoApiSlice = createApi({
     getGlobalData: builder.query({
       query: () => '/global',
     }),
+    getCoinsMarkets: builder.query({
+      query: () => '/coins/markets?vs_currency=usd',
+    }),
+    getCoinById: builder.query({
+      query: (id) => `/coins/markets?vs_currency=usd&ids=${id}`,
+    })
   }),
+
 });
 
-export const { useGetGlobalDataQuery } = cryptoApiSlice;
+export const { useGetGlobalDataQuery, useGetCoinsMarketsQuery, useGetCoinByIdQuery } = cryptoApiSlice;

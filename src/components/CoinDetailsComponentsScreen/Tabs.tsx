@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import PriceTabForCoinDetails from './PriceTabForCoinDetails';
+import InfoTabForCoinDetails from './InfoTabForCoinDetails';
 
 const PriceTab = () => (
   <PriceTabForCoinDetails/>
@@ -13,9 +14,7 @@ const SignalsTab = () => (
 );
 
 const InfoTab = () => (
-  <View>
-    <Text>Information about the Coin</Text>
-  </View>
+  <InfoTabForCoinDetails/>
 );
 
 const MarketsTab = () => (
