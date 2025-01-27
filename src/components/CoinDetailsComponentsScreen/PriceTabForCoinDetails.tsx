@@ -6,7 +6,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons/";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { useGetTop100ByMarketCapQuery } from "../../redux/slices/binanceApiSlice";
+import { useGetTop100ByMarketCapQuery } from "../../redux/slices/coinsApiSlice";
 import MarketChartForCoinDetails from "./MarketChartForCoinDetails";
 import HistoricalData from "./HistoricalData";
 import Statistics from "./Statistics";

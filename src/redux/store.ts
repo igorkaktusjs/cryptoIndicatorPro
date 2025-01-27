@@ -5,8 +5,9 @@ import { marketDataApi } from './slices/marketDataSlice';
 import { coinDataApi } from './slices/coinDataApi';
 import {сoinsListWithMarketDataApiScile} from './slices/сoinsListWithMarketDataApiScile';
 import userReducer from './slices/usersSlice';
-
-
+import { сoinTickersByIdApiSlice } from './slices/сoinTickersByIdApiScile';
+import { coinsApiSlice } from './slices/coinsApiSlice';
+import {globalApiSlice} from './slices/globalApiSlice'
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,10 @@ const store = configureStore({
     [marketDataApi.reducerPath]: marketDataApi.reducer,
     [coinDataApi.reducerPath]: coinDataApi.reducer,
     [сoinsListWithMarketDataApiScile.reducerPath]: сoinsListWithMarketDataApiScile.reducer,
+    [сoinTickersByIdApiSlice.reducerPath]: сoinTickersByIdApiSlice.reducer,
+    [coinsApiSlice.reducerPath]: coinsApiSlice.reducer,
+    [globalApiSlice.reducerPath]: globalApiSlice.reducer
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -23,7 +28,10 @@ const store = configureStore({
       cryptoApiSlice.middleware, 
       marketDataApi.middleware, 
       coinDataApi.middleware,
-      сoinsListWithMarketDataApiScile.middleware
+      сoinsListWithMarketDataApiScile.middleware,
+      сoinTickersByIdApiSlice.middleware,
+      coinsApiSlice.middleware,
+      globalApiSlice.middleware
     ),
 });
 

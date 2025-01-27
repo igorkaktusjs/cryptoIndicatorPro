@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming, withSequence, withRepeat } from 'react-native-reanimated';
-import { useGetGlobalDataQuery } from '../../redux/slices/cryptoApiSlice';
+import { useGetGlobalDataQuery } from '../../redux/slices/globalApiSlice';
+
 import { FontAwesome } from '@expo/vector-icons';
 import Loader from '../UI/Loader';
 

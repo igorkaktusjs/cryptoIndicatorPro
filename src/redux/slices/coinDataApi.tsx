@@ -36,6 +36,7 @@ export const coinDataApi = createApi({
         volume24h: response.market_data.total_volume.usd,
         high24h: response.market_data.high_24h.usd,
         low24h: response.market_data.low_24h.usd,
+        categories: response.categories
       }),
     }),
   }),

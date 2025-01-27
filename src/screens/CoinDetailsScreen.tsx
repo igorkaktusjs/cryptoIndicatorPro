@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import {  useGetTop100ByMarketCapQuery } from '../redux/slices/binanceApiSlice';
+import {  useGetTop100ByMarketCapQuery } from '../redux/slices/coinsApiSlice';
 import MainHeaderForSinglePage from '../components/CustomHeaderComponents/MainHeaderForSinglePage';
 import TabsForCoinDetalis from '../components/CoinDetailsComponentsScreen/TabsForCoinDetalis';
 
@@ -11,7 +11,7 @@ import {
   InfoTab,
   MarketsTab,
   NewsTab,
-  HistoricalDataTab,
+  
 } from '../components/CoinDetailsComponentsScreen/Tabs'; 
 
 const CoinDetailsScreen = () => {
@@ -22,7 +22,6 @@ const CoinDetailsScreen = () => {
         { key: 'info', label: 'Info', component: <InfoTab /> },
         { key: 'markets', label: 'Markets', component: <MarketsTab /> },
         { key: 'news', label: 'News', component: <NewsTab /> },
-        { key: 'historical', label: 'Historical Data', component: <HistoricalDataTab /> },
       ];
 
   const route = useRoute();

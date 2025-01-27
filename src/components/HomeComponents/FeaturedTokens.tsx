@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
-import { useGetTop100ByMarketCapQuery } from '../../redux/slices/binanceApiSlice';
+import { useGetTop100ByMarketCapQuery } from '../../redux/slices/coinsApiSlice';
 import { useSelector } from 'react-redux';
 import Loader from '../UI/Loader';
 import { useNavigation } from '@react-navigation/native';

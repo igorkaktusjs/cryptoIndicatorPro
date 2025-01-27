@@ -26,7 +26,7 @@ const Loader: React.FC<LoaderPrors> = ({
         height={height}
         viewBox={`0 0 ${width} ${height}`}
         backgroundColor="#f3f3f3"
-        foregroundColor="dbdbdb"
+        foregroundColor="#d3d3d3"
         >
             <Rect x="0" y="0" rx={rx} ry={ry} width={width} height={height} />
             </ContentLoader>

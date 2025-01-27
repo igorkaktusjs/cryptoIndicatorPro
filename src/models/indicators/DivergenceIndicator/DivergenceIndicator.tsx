@@ -1,9 +1,9 @@
 import React, { useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useGetMarketChartQuery } from '../../../redux/slices/marketDataSlice';
+import { useGetMarketChartQuery } from '../../../redux/slices/coinsApiSlice';
 import { calculateMACD } from './divergenceUtils';
 
-// Оптимизированный расчет RSI
+
 const calculateRSI = (prices: number[], period = 14): number | null => {
   if (prices.length < period + 1) return null;
 

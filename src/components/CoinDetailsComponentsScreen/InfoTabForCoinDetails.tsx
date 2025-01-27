@@ -1,10 +1,14 @@
-import { View, Text, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, Image, ScrollView, Dimensions, useWindowDimensions } from 'react-native';
 import React, {useMemo} from 'react';
-import RenderHtml from 'react-native-render-html';
-import { useGetCoinDataByIdQuery} from '../../redux/slices/coinDataApi';
-import { useGetCoinsListWithMarketDataQuery } from '../../redux/slices/сoinsListWithMarketDataApiScile';
-import {useGetTop100ByMarketCapQuery} from '../../redux/slices/binanceApiSlice'
-import {useGetGlobalDataQuery, useGetCoinsMarketsQuery, useGetCoinByIdQuery  } from '../../redux/slices/cryptoApiSlice';
+import { 
+    useGetCoinDataByIdQuery,
+    useGetCoinsListWithMarketDataQuery,
+    useGetTop100ByMarketCapQuery,
+    useGetCoinsMarketsQuery,
+    useGetCoinByIdQuery
+} from '../../redux/slices/coinsApiSlice';
+
+import {useGetGlobalDataQuery} from '../../redux/slices/globalApiSlice'
 
 import { useRoute } from '@react-navigation/native';
 import Loader from '../UI/Loader';
@@ -12,24 +16,27 @@ import HistoricalData from './HistoricalData';
 
 const InfoTabForCoinDetails = () => {
   const contentWidth = Dimensions.get('window').width;
+  const { width } = useWindowDimensions();
 
   const route = useRoute();
   const { id, coinName, item } = route.params;
 
-  console.log(item.toLowerCase());
+  
 
   const { data: coins, isLoading: isCoinsLoading, error: coinsError } =
     useGetCoinsListWithMarketDataQuery({ vs_currency: 'usd', order: 'market_cap_desc', per_page: 100, page: 1 });
     
     const { data: coinData, isLoading: isCoinDataLoading, error: coinDataError } = useGetCoinDataByIdQuery(item); //for desc data
-    const { data: CoinById, isLoading: CoinByIdLoading } = useGetCoinByIdQuery(coinName.toLowerCase());
+    const { data: CoinById, isLoading: CoinByIdLoading } = useGetCoinByIdQuery(item);
     const { data: globalData, isLoading: globalLoading } = useGetGlobalDataQuery();
     const { data: coinsData, isLoading: coinsLoading } = useGetCoinsMarketsQuery();
     const {data: marketData, isLoading: isMarketLoading, error: marketDataError} = useGetTop100ByMarketCapQuery();
 
-    if (globalLoading || coinsLoading ) return <Loader color='red' />;
+    console.log(globalData);
+
+
+    if (globalLoading || coinsLoading || isCoinsLoading || isCoinDataLoading || isMarketLoading) return <Loader/>;
     if (!globalData || !coinsData) return <Text>Error loading data</Text>;
-    if (isCoinsLoading || isCoinDataLoading) return <Loader />;
 
     const coinMarketData =  marketData?.find((c) => c.symbol.toLowerCase() === id.toLowerCase());
     const currentCoin = coins.find((coin) => coin.symbol ===id);
@@ -85,11 +92,10 @@ const InfoTabForCoinDetails = () => {
         </View>
       </View>
       
-      <View className="mb-4 border-hairline border-zinc-300 rounded-md p-2 bg-zinc-100">
-        <Text className="text-sm text-gray-500 font-normal"><RenderHtml
-        contentWidth={contentWidth}
-        source={{ html: coinData?.description }}
-      /></Text>
+      <View className="mb-4 border-hairline border-zinc-300 rounded-md p-3 bg-zinc-100">
+        <Text className="text-sm text-gray-500 font-normal">
+          {coinData?.description}
+      </Text>
         
       </View>
     </ScrollView>

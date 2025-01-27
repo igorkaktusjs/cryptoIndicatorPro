@@ -35,7 +35,7 @@ const HomeScreen: React.FC = () => {
       <MainHeader onLanguagePress={handleSnapPress} />
       <MarketTicker/>   
       <TopIndicatarsWidget />
-      <FeaturedTokens />          
+      <FeaturedTokens/>          
       <WidgetList />
       <BottomSheet
         ref={sheetRef}

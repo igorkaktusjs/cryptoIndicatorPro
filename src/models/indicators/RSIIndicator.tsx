@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useGetMarketChartQuery } from '../../redux/slices/marketDataSlice';
+import { useGetMarketChartQuery } from '../../redux/slices/coinsApiSlice';
 
 const calculateRSI = (prices: number[], period = 14): number | null => {
 if (prices.length < period + 1) return null; 
@@ -24,7 +24,7 @@ for (let i = 1; i < prices.length; i++) {
 let averageGain = gains.slice(0, period).reduce((acc, val) => acc + val, 0) / period;
 let averageLoss = losses.slice(0, period).reduce((acc, val) => acc + val, 0) / period;
 
-// Расчет скользящих средних и RSI
+
 const rsiValues: number[] = [];
 for (let i = period; i < gains.length; i++) {
     averageGain = (averageGain * (period - 1) + gains[i]) / period;
@@ -57,11 +57,11 @@ if (!data || !data.prices) {
     return <Text>No data available</Text>;
 }
 
-// Извлечение цен из ответа
+
 const prices = data.prices.map((price: [number, number]) => price[1]);
 //console.log('Extracted Prices:', prices);
 
-// Расчет RSI
+//  RSI
 const rsi = calculateRSI(prices);
 if (rsi === null) {
     return <Text>Not enough data for RSI calculation</Text>;

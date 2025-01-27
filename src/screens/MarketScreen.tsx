@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
-import { useGetTop100ByMarketCapQuery } from '../redux/slices/binanceApiSlice';
+import { useGetTop100ByMarketCapQuery } from '../redux/slices/coinsApiSlice';
 import HorizontalMenu from '../components/MarketComponentsScreen/HorizontalMenu';
 import MarketListItem from '../components/MarketComponentsScreen/MarketListItem';
 import { SafeAreaView } from 'react-native-safe-area-context';

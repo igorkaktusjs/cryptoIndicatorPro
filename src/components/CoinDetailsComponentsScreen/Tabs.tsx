@@ -29,17 +29,10 @@ const NewsTab = () => (
   </View>
 );
 
-const HistoricalDataTab = () => (
-  <View>
-    <Text>Historical Data for the Coin</Text>
-  </View>
-);
-
 export {
   PriceTab,
   SignalsTab,
   InfoTab,
   MarketsTab,
   NewsTab,
-  HistoricalDataTab,
 };

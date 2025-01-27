@@ -47,7 +47,6 @@ export const binanceApiSlice = createApi({
           atl_date: item.atl_date,
           roi: item.roi,
           last_updated: item.last_updated
-
         }));
       },
     }),

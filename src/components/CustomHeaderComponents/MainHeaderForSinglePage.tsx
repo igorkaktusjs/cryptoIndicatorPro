@@ -3,7 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons,FontAwesome5, MaterialCommunityIcons }from '@expo/vector-icons/';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {useRoute,  useNavigation } from '@react-navigation/native';
-import {  useGetTop100ByMarketCapQuery } from '../../redux/slices/binanceApiSlice';
+import { useGetTop100ByMarketCapQuery } from '../../redux/slices/coinsApiSlice';
 
 
 const MainHeaderWithLogoAndIcons: React.FC = () => {
