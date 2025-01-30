@@ -125,6 +125,24 @@ export const coinsApiSlice = createApi({
         categories: response.categories
       }),
     }),
+
+    getCoinTickers: builder.query({
+      query: (coinId) => `coins/${coinId}/tickers?include_exchange_logo=true`,
+      transformResponse: (response: any) => (
+        response.tickers?.map((ticker: any, index: number) => ({
+          name: ticker.market.name,
+          rank: index + 1,
+          logo: ticker.market.logo,
+          volume: ticker.volume,
+          trust: ticker.trust_score,
+          price: ticker.last,
+          base: ticker.base,
+          target: ticker.target
+        })) || [] // Return empty array if tickers is undefined
+      )
+    })
+    
+
   }),
 });
 
@@ -135,4 +153,5 @@ export const {
   useGetMarketChartQuery,
   useGetTop100ByMarketCapQuery,
   useGetCoinDataByIdQuery,
+  useGetCoinTickersQuery
 } = coinsApiSlice;
