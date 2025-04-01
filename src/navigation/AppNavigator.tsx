@@ -20,8 +20,8 @@ const Tab = createBottomTabNavigator();
 
 
 const HomeStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+  <Stack.Navigator >
+    <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false}} />
     <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ title: 'Notifications' }} />
     <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Details' }} />
     <Stack.Screen name="AboutUs" component={AboutUsScreen} options={{ title: 'About Us' }} />
@@ -41,7 +41,7 @@ const MarketStack = () => (
 
 const NewsStack = () => (
   <Stack.Navigator>
-    <Stack.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="News" component={NewsScreen} options={{ headerShown: false, }}/>
   </Stack.Navigator>
 );
 

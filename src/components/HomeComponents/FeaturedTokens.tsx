@@ -43,7 +43,7 @@ const TokenList = () => {
   }
 
   return (
-    <View className="flex p-4">
+    <View className="flex rounded-xl p-4 shadow-lg bg-zinc-100  m-10">
       <FlatList
         scrollEnabled={false}
         data={displayedTokens}

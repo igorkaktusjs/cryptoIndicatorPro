@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useMemo } from 'react';
-import { View } from 'react-native';
+import { View , Button } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import MainHeader from '../components/MainHeader';
 import TopIndicatarsWidget from '../components/HomeComponents/TopIndicatarsWidget';
@@ -8,7 +8,6 @@ import WidgetList from '../components/HomeComponents/SortablList/WidgetList';
 import BottomSheetLanguage from '../components/BottomSheetLanguage';
 import BottomSheet from '@gorhom/bottom-sheet';
 import MarketTicker from '../components/MarketComponentsScreen/MarketTicker';
-import VictoryDemo from '../components/HomeComponents/VictoryDemo'
 
 const HomeScreen: React.FC = () => {
   const sheetRef = useRef<BottomSheet>(null);
@@ -35,8 +34,6 @@ const HomeScreen: React.FC = () => {
     <GestureHandlerRootView className="flex-1">
       <MainHeader onLanguagePress={handleSnapPress} />
       <MarketTicker/>
-      <VictoryDemo/>   
-      <TopIndicatarsWidget />
       <FeaturedTokens/>          
       <WidgetList />
       <BottomSheet

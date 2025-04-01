@@ -62,13 +62,15 @@ const TabNavigator: React.FC = () => {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#1E88E5',
-        tabBarInactiveTintColor: 'gray',
+        //tabBarActiveTintColor: '#d35a35',
+        //tabBarInactiveTintColor: '#c7d8cd',
+        
       })}
+      
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false,  }} />
       <Tab.Screen name="Market" component={MarketScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="News" component={NewsScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="News" component={NewsScreen} options={{ headerShown: false, tabBarActiveTintColor: 'red' }} />
       <Tab.Screen name="Indicators" component={IndicatorsScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Notifications" component={NotificationsScreen} options={{ headerShown: true }} />
