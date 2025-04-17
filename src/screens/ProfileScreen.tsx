@@ -5,12 +5,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Section from '../components/ProfileComponentsScreen/Section'; 
 import ProfileButton from '../components/ProfileComponentsScreen/ProfileButton'; 
 import MainHeaderWithoutIcon from '../components/MainHeaderWithoutIcon';
+import { Colors } from '../constants/colors';
 
 const ProfileScreen: React.FC = () => {
   return (
-    <SafeAreaView edges={['top']} className="flex-1">
+    <SafeAreaView edges={['top']} className="flex-1 bg-background mb-18">
       <MainHeaderWithoutIcon/>
-      <View className="flex-1  p-4">
+      <View className="flex-1  p-4 ">
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentContainer}>
           
           {/* Account Overview */}
@@ -87,12 +88,15 @@ const ProfileScreen: React.FC = () => {
 const styles = StyleSheet.create({
   separator: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#E0E0E0',
     marginVertical: 10,
+    backgroundColor: Colors.red
   },
   contentContainer: {
     paddingBottom: 20,
   },
+  sectionContainer: {
+    backgroundColor: Colors.background
+  }
 });
 
 export default ProfileScreen;

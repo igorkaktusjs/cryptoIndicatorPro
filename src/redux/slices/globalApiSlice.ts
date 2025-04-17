@@ -55,7 +55,7 @@
               Math.log10(coin.total_volume || 1),
           }))
           .sort((a, b) => b.score - a.score)
-          .slice(0, 10); // Return top 10 gainers
+          .slice(0, 10); 
       },
     }),
     getTopCoinsByCategory: builder.query<CoinCategoryMarket[], { category: string }>({

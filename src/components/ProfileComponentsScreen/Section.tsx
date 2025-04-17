@@ -12,8 +12,8 @@ interface SectionProps {
 const Section: React.FC<SectionProps> = ({ title, icon, iconColor, children }) => {
   return (
     <>
-      <Text className="text-2xl font-extrabold text-gray-700 mb-4 mt-2">{title}</Text>
-      <View className="mb-8 p-4 bg-white rounded-lg shadow">
+      <Text className="text-2xl font-bold text-red mb-4 mt-2">{title}</Text>
+      <View className="mb-8 p-4 mx-2 bg-background rounded-lg shadow">
         {children}
       </View>
     </>

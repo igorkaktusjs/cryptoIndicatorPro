@@ -4,6 +4,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors } from '../../constants/colors';
 
 
 
@@ -23,13 +24,13 @@ const MainHeaderWithLogoAndIcons: React.FC = () => {
       </View>
       <View className='flex-row gap-5'>
         <TouchableOpacity>
-        <FontAwesome5 name="star" size={24} color="gray" />
+        <FontAwesome5 name="star" size={24} color={Colors.red} />
         </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-          <MaterialIcons name="currency-exchange" size={24} color="gray" /> 
+          <MaterialIcons name="currency-exchange" size={24} color={Colors.red} /> 
         </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-        <MaterialIcons name="search" size={32} color="gray" />
+        <MaterialIcons name="search" size={32} color={Colors.red} />
       </TouchableOpacity>
       </View>
     </SafeAreaView>
