@@ -9,16 +9,16 @@ import SortableList from "./SortableList";
 
 const tiles = [
   {
-      id: 'spent',
+      id: 'trending',
   },
   {
-      id: 'cashback'
+      id: 'topGainers'
   },
   {
-      id: 'recent',
+      id: 'topLosers',
   },
   {
-      id: 'cards'
+      id: 'recentlyAdded'
   }
 ];
 

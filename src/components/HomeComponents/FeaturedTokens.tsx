@@ -43,7 +43,7 @@ const TokenList = () => {
   }
 
   return (
-    <View className="flex rounded-xl p-4 shadow-lg bg-zinc-100  m-10">
+    <View className="flex rounded-xl p-4 shadow-sm bg-background  m-10">
       <FlatList
         scrollEnabled={false}
         data={displayedTokens}
@@ -52,8 +52,8 @@ const TokenList = () => {
             onPress={() => navigation.navigate('CoinDetails', {id: item.symbol, coinName: item.name, item: item.id })}
             className="flex-row justify-between items-center p-2 ml-8">
             <View className="flex-row w-1/3 items-center gap-2">
-              <Image source={{ uri: item.imageUrl }} className="h-9 w-9 my-1" />
-              <Text className="text-lg uppercase font-semibold text-blue">
+              <Image source={{ uri: item.imageUrl }} className="h-8 w-8 my-1" />
+              <Text className="text-lg uppercase font-semibold text-primary">
                 {item.symbol}
               </Text>
             </View>
@@ -76,10 +76,11 @@ const TokenList = () => {
         keyExtractor={(item) => item.symbol}
       />
       <TouchableOpacity
+      
         className="mt-4 mx-auto px-6 py-1 rounded-16 opacity-85"
         onPress={() => {}}
       >
-        <Text className="text-primary text-lg font-bold">View More</Text>
+        <Text className="text-error text-lg font-bold">View More</Text>
       </TouchableOpacity>
     </View>
   );

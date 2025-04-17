@@ -4,6 +4,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import {View} from 'react-native';
 
 import Item from "./Item";
 import { COL, Positions, SIZE } from "./Config";
@@ -31,6 +32,7 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
 
   return (
     <Animated.ScrollView
+      
       onScroll={onScroll}
       ref={scrollView}
       contentContainerStyle={{
@@ -42,7 +44,8 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
     >
       {children.map((child) => {
         return (
-          <Item
+          
+            <Item
             key={child.props.id}
             positions={positions}
             id={child.props.id}
@@ -50,9 +53,13 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
             onDragEnd={onDragEnd}
             scrollView={scrollView}
             scrollY={scrollY}
+            
           >
+            
             {child}
+            
           </Item>
+          
         );
       })}
     </Animated.ScrollView>

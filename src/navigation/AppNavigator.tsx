@@ -90,8 +90,23 @@ const AppNavigator: React.FC = () => {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#1E88E5',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: '#d35a35',
+          tabBarInactiveTintColor: '#8e8d8a',
+          tabBarStyle: {
+            backgroundColor: '#eae7dc',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            position: 'absolute',
+            height: 70,
+            marginBottom: 5,
+            paddingBottom: 10,
+            paddingTop: 10,
+            shadowColor: '#000',
+            shadowOpacity: 0.1,
+            shadowOffset: { width: 0, height: -2 },
+            shadowRadius: 10,
+            elevation: 10
+          }
         })}
       >
         <Tab.Screen name="HomeTab" component={HomeStack} options={{ title: 'Home', headerShown: false }} />
