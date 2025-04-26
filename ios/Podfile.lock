@@ -6,7 +6,7 @@ PODS:
   - EXAV (15.0.2):
     - ExpoModulesCore
     - ReactCommon/turbomodule/core
-  - EXConstants (17.0.5):
+  - EXConstants (17.0.8):
     - ExpoModulesCore
   - Expo (52.0.30):
     - ExpoModulesCore
@@ -2068,7 +2068,7 @@ SPEC CHECKSUMS:
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   EXAV: 57ea461614a714b8b8fcc72c6fbc298b8f1ec78b
-  EXConstants: aa93a3e70f8b37c81a80931cfd23f860b1819167
+  EXConstants: a1f35b9aabbb3c6791f8e67722579b1ffcdd3f18
   Expo: ff20e7bf6603d213f5bcb4076adadad772468a0e
   ExpoAsset: 77e4579f19b48d6b3f4055c933e86ce45e80caeb
   ExpoFileSystem: 208cf862e5d0f4afcc37dc3958d54c7f0b5b7fc1

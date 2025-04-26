@@ -34,3 +34,33 @@ export interface TopLosersCoin {
     market_cap: number;
     price_change_percentage_24h: number;
   }
+
+
+  export interface CryptoPanicPost {
+    id: number;
+    title: string;
+    url: string;
+    published_at: string;
+    created_at: string;
+    source: {
+      title: string;
+      domain: string;
+      path: string;
+    };
+    currencies: { code: string; title: string; slug: string }[];
+    tags: string[];
+    vote_stats: {
+      negative: number;
+      positive: number;
+      important: number;
+      liked: number;
+      disliked: number;
+      lol: number;
+    };
+    metadata?: Record<string, any>;
+  }
+  
+  export interface CryptoPanicApiResponse {
+    results: CryptoPanicPost[];
+    next?: string;
+  }
