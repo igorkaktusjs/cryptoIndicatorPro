@@ -31,7 +31,7 @@ const HomeScreen: React.FC = () => {
   }, [handleClosePress]);
 
   return (
-    <GestureHandlerRootView className="flex-1 bg-background">
+    <GestureHandlerRootView className="flex-1 bg-[#faf9f5]">
       <MainHeader onLanguagePress={handleSnapPress} />
       <MarketTicker/>
       <FeaturedTokens/>          

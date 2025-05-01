@@ -1,6 +1,7 @@
 import {  Text, TouchableOpacity, ScrollView} from 'react-native'
 import React from 'react'
 import clsx from 'clsx';
+import { capitalizeFirstLetter } from '../../models/capitalizeFirstLetter';
 
 interface Props {
   filters: readonly string[];
@@ -10,23 +11,22 @@ interface Props {
 
 const NewsTabs = ({filters, selected, onSelect}: Props) => {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row'>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row my-6 max-h-12 mx-4'>
       {filters.map((item) => (
         <TouchableOpacity 
           key={item}
           onPress={()=> onSelect(item)}
           className={clsx(
-            'px-4 py-2 mr-2 rounded-full',
-            selected === item ? 'bg-black' : 'bg-gray'
+            'px-4 py-1 mr-2 rounded-xl',
+            selected === item ? 'border-b-red border-b-hairline' : ''
           )}
         >
           <Text className={clsx(
-            'text-sm font-medium',
-            selected === item ? 'text-write' : 'text-black'
+            'text-md font-medium py-1',
+            selected === item ? 'text-red' : 'text-black'
           )}>
-            {item}
+            {capitalizeFirstLetter(item)}
           </Text>
-
         </TouchableOpacity>
       ) )}
     </ScrollView>

@@ -4,7 +4,13 @@
 
  const API_BASE_URL = 'https://api.coingecko.com/api/v3';
 
- 
+ interface CoinMarketData {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  price_change_percentage_24h: number;
+}
  
  export const globalApiSlice = createApi({
    reducerPath: 'globalApi',
@@ -58,6 +64,7 @@
           .slice(0, 10); 
       },
     }),
+
     getTopCoinsByCategory: builder.query<CoinCategoryMarket[], { category: string }>({
       query: ({ category }) =>
         `/coins/markets?vs_currency=usd&category=${category}&order=market_cap_desc&per_page=10&page=1&sparkline=false`,
@@ -65,6 +72,18 @@
         return response.slice(0, 3);
       },
     }),
+    getCoinsMarket: builder.query<CoinMarketData[],string[]>({
+      query: (ids) => ({
+        url: 'coins/markets',
+        params: {
+          vs_currency: 'usd',
+          ids: ids.join(','), 
+          per_page: ids.length,
+          page: 1,
+          sparkline: false,
+        }
+      })
+    })
    }),
    
  });
@@ -74,6 +93,6 @@
   useGetTrendingCoinsQuery, 
   useGetTopCoinsForLosersQuery, 
   useGetTopGainersQuery,
-  useGetTopCoinsByCategoryQuery
-
+  useGetTopCoinsByCategoryQuery,
+  useGetCoinsMarketQuery
 } = globalApiSlice;

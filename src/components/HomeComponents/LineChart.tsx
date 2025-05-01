@@ -28,7 +28,7 @@ const LineChart = () => {
   const labelColor = colorMode === 'dark' ? 'white' : 'black';
   const lineColor = colorMode === 'dark' ? 'lightgrey' : 'black';
 
-  // Создаем анимируемый компонент для Line
+
   const AnimatedLine = Animated.createAnimatedComponent(ForwardedLine);
 
   return (

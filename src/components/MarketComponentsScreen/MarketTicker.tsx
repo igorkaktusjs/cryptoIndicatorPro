@@ -62,7 +62,7 @@ const MarketTicker: React.FC = () => {
     <View className="h-10 overflow-hidden justify-center  border-cyan-900 relative">
       
       <LinearGradient
-        colors={['rgba(234, 231, 220, 0)', 'rgba(234, 231, 220, 1)']}
+        colors={['rgba(250, 249, 245, 0)', 'rgba(250, 249, 245, 1)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
         style={{
@@ -76,7 +76,7 @@ const MarketTicker: React.FC = () => {
       />
 
 <LinearGradient
-        colors={['rgba(234, 231, 220, 0)', 'rgba(234, 231, 220, 1)']}
+        colors={['rgba(250, 249, 245, 0)', 'rgba(250, 249, 245, 1)']}
         start={{ x: 0, y: 0.5 }}
         end={{ x: 1, y: 0.5 }}
         style={{

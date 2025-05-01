@@ -3,20 +3,24 @@ import React, {useState} from 'react'
 import MainHeaderWithLogoAndIcons from '../components/CustomHeaderComponents/MainHeaderWithLogoAndIcons';
 import NewsList from '../components/NewsComponentsScreen/NewsList';
 import NewsTabs from '../components/NewsComponentsScreen/NewsTabs';
-import NewsCard from '../components/NewsComponentsScreen/NewsCard';
 import { useGetNewsByFilterQuery } from '../redux/slices/newsApiSlice';
+import {useGetLatestNewsQuery} from '../redux/slices/newsApiSlice'
+
+import LatestNews from '../components/NewsComponentsScreen/LatestNews';
 
 const FILTERS = ['hot', 'important','bullish','bearish','rising'] as const;
 
 type NewsFilter = typeof FILTERS[number];
 
 const NewsScreen = () => {
+
  const [filter, setFilter] = useState<NewsFilter>('hot');
- const {data, isLoading, error} = useGetNewsByFilterQuery(filter);
+ const { data: filteredNews, isLoading: isFilteredLoading, error: filteredError } = useGetNewsByFilterQuery(filter);
+ const { data: latestNews, isLoading: isLatestLoading, error: latestError } = useGetLatestNewsQuery();
+ 
 
-
- if(error) {
-  console.log(error)
+ if(filteredError || latestError ) {
+  console.log(filteredError , latestError )
   return (
     <View className='flex-1 items-center justify-center'>
       <Text className='text-red'>Failed to load news.</Text>
@@ -35,11 +39,11 @@ const NewsScreen = () => {
         onSelect={setFilter as (filter: string) => void}
         />
       <ScrollView mt-4>
-          <NewsList data={data || []} isLoading={isLoading}/>
+          <NewsList data={filteredNews || []} isLoading={isFilteredLoading}/>
       </ScrollView>
     </View>
   </>
-    
+  
   )
 }
 

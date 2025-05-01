@@ -11,7 +11,7 @@ export const newsApi = createApi({
   }),
   endpoints: (builder) => ({
     getLatestNews: builder.query<CryptoPanicPost[], void>({
-      query: () => `/posts/?auth_token=${API_KEY}&public=true&filter=important&kind=news&regions=en`,
+      query: () => `/posts/?auth_token=${API_KEY}&public=true&kind=news&regions=en`,
       transformResponse: (response: CryptoPanicApiResponse) => response.results,
     }),
     getNewsByCurrency: builder.query<CryptoPanicPost[], string>({

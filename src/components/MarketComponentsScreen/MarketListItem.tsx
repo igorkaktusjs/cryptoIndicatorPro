@@ -23,7 +23,7 @@ const MarketListItem: React.FC<MarketListItemProps> = ({
   imageUrl,
 }) => {
   return (
-    <View className="flex-row items-center p-2 my-2 rounded-md shadow-sm border-b-hairline">
+    <View className="flex-row items-center p-2 my-2 rounded-m  border-b-hairline">
       <Text className="text-16 font-semibold w-rank-fixed">{formatRank(rank)}</Text>
       <Image source={{ uri: imageUrl }} className="w-9 h-9 mx-8 text-center" />
       <Text className="text-10 flex-1">{`${symbol.trim()}`}</Text>

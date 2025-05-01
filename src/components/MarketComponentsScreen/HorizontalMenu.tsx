@@ -18,13 +18,13 @@ const HorizontalMenu: React.FC<HorizontalMenuProps> = ({
         <TouchableOpacity
           key={item}
           onPress={() => onSelectItem(item)}
-          className={`px-5 py-2 mx-5 rounded-md ${
-            selectedItem === item ? 'bg-neutral-200' : 'bg-gray-100'
+          className={`px-5 py-2 mx-5 rounded-xl ${
+            selectedItem === item ? 'bg-background' : 'bg-gray-100'
           }`}
         >
           <Text
             className={`text-24 ${
-              selectedItem === item ? 'text-black font-bold' : 'text-gray text-24 font-bold'
+              selectedItem === item ? 'text-red font-bold' : 'text-gray text-24 font-bold'
             }`}
           >
             {item}

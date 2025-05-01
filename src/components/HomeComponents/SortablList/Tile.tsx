@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     width: SIZE - 18,
     height: 125,
-    backgroundColor: '#eae7dc',
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -55,7 +54,7 @@ const Tile = ({ id }: TileProps) => {
   const { data, isLoading, error } = query;
 
   return (
-    <View style={styles.container} pointerEvents="none">
+    <View style={styles.container} className='bg-background' pointerEvents="none">
       <CoinTile title={title} data={data} isLoading={isLoading} error={!!error} />
     </View>
   );
