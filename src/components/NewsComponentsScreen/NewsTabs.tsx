@@ -11,7 +11,7 @@ interface Props {
 
 const NewsTabs = ({filters, selected, onSelect}: Props) => {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row my-6 max-h-12 mx-4'>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} className='flex-row my-6 max-h-12 mx-4 h-24'>
       {filters.map((item) => (
         <TouchableOpacity 
           key={item}

@@ -1,3 +1,4 @@
+// src/store/api/newsApi.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Constants from 'expo-constants';
 import type { CryptoPanicPost, CryptoPanicApiResponse } from '../../types/types';
@@ -9,26 +10,23 @@ export const newsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://cryptopanic.com/api/v1',
   }),
+  keepUnusedDataFor: 300, 
   endpoints: (builder) => ({
-    getLatestNews: builder.query<CryptoPanicPost[], void>({
-      query: () => `/posts/?auth_token=${API_KEY}&public=true&kind=news&regions=en`,
-      transformResponse: (response: CryptoPanicApiResponse) => response.results,
-    }),
-    getNewsByCurrency: builder.query<CryptoPanicPost[], string>({
-      query: (currency) =>
-        `/posts/?auth_token=${API_KEY}&public=true&currencies=${currency}&kind=news&regions=en`,
-      transformResponse: (response: CryptoPanicApiResponse) => response.results,
-    }),
-    getNewsByFilter: builder.query<CryptoPanicPost[], string>({
-      query: (filter) =>
-        `/posts/?auth_token=${API_KEY}&public=true&filter=${filter}&kind=news&regions=en`,
+    getNews: builder.query<CryptoPanicPost[], Record<string, string | undefined>>({
+      query: (params) => {
+        const queryParams = new URLSearchParams({
+          auth_token: API_KEY,
+          public: 'true',
+          kind: 'news',
+          regions: 'en',
+          ...params,
+        });
+
+        return `/posts/?${queryParams.toString()}`;
+      },
       transformResponse: (response: CryptoPanicApiResponse) => response.results,
     }),
   }),
 });
 
-export const {
-  useGetLatestNewsQuery,
-  useGetNewsByCurrencyQuery,
-  useGetNewsByFilterQuery,
-} = newsApi;
+export const { useGetNewsQuery } = newsApi;

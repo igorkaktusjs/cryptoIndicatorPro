@@ -1,33 +1,57 @@
-import { View, Text, TouchableOpacity} from 'react-native'
-import React from 'react'
-import { CryptoPanicPost } from '../../types/types'
-
-import {useGetLatestNewsQuery} from '../../redux/slices/newsApiSlice'
+import React, { useCallback, useMemo } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { formatRelativeTimeSimple } from '../../models/formatRelativeTimeSimple';
+import { useNewsTags } from '../../hooks/useNewsTags';
+import CoinsTagList from './CoinsTagList';
+import { CryptoPanicPost } from '../../types/types';
 
 interface Props {
-    data: CryptoPanicPost[];
-    isLoading: boolean;
+  item?: CryptoPanicPost;
 }
 
-const LatestNews = ({data,isLoading}:Props) => {
+const LatestNews = ({ item }: Props) => {
+  const navigation = useNavigation();
+  const tags = useNewsTags(item?.currencies || []);
+
+  const handleTagPress = useCallback((tag: { id: string }) => {
+    navigation.navigate('TokenDetailsScreen', { tokenId: tag.id });
+  }, [navigation]);
+
+  const handleNewsPress = useCallback(() => {
+    if (item) {
+      navigation.navigate('NewsDetails', { item });
+    }
+  }, [navigation, item]);
+
+  const relativeTime = useMemo(
+    () => (item ? formatRelativeTimeSimple(item.published_at) : ''),
+    [item?.published_at]
+  );
+
+  if (!item) {
+    return <Text className="text-gray text-center mt-4">No latest news available.</Text>;
+  }
 
   return (
-    <View className='flex-col justify-start px-10 w-full  mx-10 '>
-      <Text className='text-start text-xl font-semibold'>Latest News</Text>
-      {data.map((item)=> {
-        return (
-            <TouchableOpacity
-                key={item.id}
-                onPress={() => console.log(item)}
-                className=' bg-backgroundTineLight'
-            >
-            <Text>{item.title}</Text>
-            
-            </TouchableOpacity>
-        )
-      })}
-    </View>
-  )
-}
+    <View className="justify-start px-5">
+      <Text className="text-xl font-bold mb-3 text-black">Latest News</Text>
 
-export default LatestNews
+      <TouchableOpacity
+        onPress={handleNewsPress}
+        className="h-44 justify-center bg-backgroundTineLight rounded-2xl p-4"
+      >
+        <Text className="text-base font-semibold text-black mb-2">{item.title}</Text>
+
+        <View className="flex-row justify-between mb-2">
+          <Text className="text-sm text-gray">{item.source.title}</Text>
+          <Text className="text-xs text-gray">{relativeTime}</Text>
+        </View>
+
+        <CoinsTagList tags={tags} onPress={handleTagPress} />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default LatestNews;
